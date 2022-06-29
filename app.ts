@@ -21,7 +21,7 @@ import { TOKENS } from "./core/tokens";
 
 const userRepository = container.get(TOKENS.userRepository);
 const postRepository = container.get(TOKENS.postRepository);
-
+const userService = container.get(TOKENS.userService);
 
 // this works just fine but it doesn't scale well 
 // const db = new PrismaClient();
@@ -30,7 +30,7 @@ const postRepository = container.get(TOKENS.postRepository);
 // const postRepository = new PostRepository(db);
 
 app.get("/users", async (req, res) => {
-  const users = await userRepository.get();
+  const users = await userService.getSomeData();
   res.send(users);
 });
 
